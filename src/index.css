@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: black;
+  color: white;
 }
 
 code {
@@ -23,4 +25,15 @@ code {
   border: 1px solid lightgray;
   border-radius: 5px;
   margin: 10px;
+}
+
+.planet {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.header {
+  text-align: center;
 }
