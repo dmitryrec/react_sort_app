@@ -6,41 +6,49 @@ export default class App extends Component {
     planets: []
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
-      fetch(`https://swapi.co/api/planets/`)
+    fetch(`https://swapi.co/api/planets/`)
       .then(res => {
         return res.json()
       })
-      .then(({results}) => {
+      .then(({ results }) => {
         console.log(results)
         this.setState({
-            planets: results
+          planets: results
         })
         console.log(this.state.planets)
 
       })
-      
-    }
+
+  }
 
   render() {
 
-    const {planets} = this.state
+    const { planets } = this.state
 
     return (
-     <div>
-       <h1>Planets</h1>
-       {planets.map(planet=>(
-           <div>{planet.name}</div>
-         ))}
-       {/* <div>
+      <div className="container">
+        <div className="main">
+          <h1>Planets:</h1>
+          {planets.map(planet => (
+            <div key={planet.url}>
+              <h3>name: {planet.name}</h3>
+              <span>diameter: {planet.diameter}</span>
+            </div>
+
+          ))}
+
+          {/* <div>
          <img src="" alt=""/>
          <p>title</p>
          <p>diameter:</p>
          <a href="" target="_blank">link</a>
          
        </div> */}
-     </div>
+        </div>
+      </div>
+
     );
   }
 }
