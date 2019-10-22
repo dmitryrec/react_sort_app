@@ -24,16 +24,22 @@ export default class App extends Component {
     }
 
   render() {
+
+    const {planets} = this.state
+
     return (
      <div>
        <h1>Planets</h1>
-       <div>
+       {planets.map(planet=>(
+           <div>{planet.name}</div>
+         ))}
+       {/* <div>
          <img src="" alt=""/>
          <p>title</p>
          <p>diameter:</p>
          <a href="" target="_blank">link</a>
          
-       </div>
+       </div> */}
      </div>
     );
   }
