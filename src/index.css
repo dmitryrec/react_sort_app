@@ -1,5 +1,9 @@
-body {
+* {
+  padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -25,13 +29,21 @@ code {
   border: 1px solid lightgray;
   border-radius: 5px;
   margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  padding: 15px;
 }
 
 .planet {
   border: 1px solid lightgray;
   border-radius: 5px;
   margin: 5px;
-  padding: 5px;
+  padding: 15px;
+  width: 25%;
+  height: 100px;
+  text-align: center;
 }
 
 .header {

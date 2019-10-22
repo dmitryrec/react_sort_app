@@ -29,12 +29,13 @@ export default class App extends Component {
 
     return (
       <div className="container">
+        <h1 className="header">Star Wars planets:</h1>
         <div className="main">
-          <h1 className="header">Star Wars planets:</h1>
           {planets.map(planet => (
             <div key={planet.url} className="planet">
               <h3>name: {planet.name}</h3>
               <span>diameter: {planet.diameter}</span>
+
             </div>
 
           ))}
