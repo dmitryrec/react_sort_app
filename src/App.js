@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Planet from './Planet';
 
 export default class App extends Component {
 
@@ -21,44 +22,24 @@ export default class App extends Component {
           planets: results,
           loading: false
         })
-
+        console.log(this.state.planets)
       })
-
   }
 
   render() {
-
     const { planets, loading } = this.state
+
     if(loading){
       return <div className="loading">Loading...</div>
-    }{
+    }
       return (
         <div className="container">
           <h1 className="header">Star Wars planets:</h1>
           <div className="main">
-            {planets.map(planet => (
-              <div key={planet.url} className="planet">
-                <h3>{planet.name}</h3>
-                <span>diameter: {planet.diameter}</span>
-  
-              </div>
-  
-            ))}
-  
-            {/* <div>
-           <img src="" alt=""/>
-           <p>title</p>
-           <p>diameter:</p>
-           <a href="" target="_blank">link</a>
-           
-         </div> */}
+            {planets.map(planet => <Planet {...planet} key={planet.url}/>)}
           </div>
         </div>
-  
       );
-    }
-
-    
   }
 }
 
