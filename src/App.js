@@ -27,7 +27,8 @@ export default class App extends Component {
   }
 
   render() {
-    const { planets, loading } = this.state
+    const { planets, loading } = this.state;
+    const sortedByDiameter = planets.sort((a, b) => b.diameter - a.diameter)
 
     if(loading){
       return <div className="loading">Loading...</div>
@@ -36,7 +37,7 @@ export default class App extends Component {
         <div className="container">
           <h1 className="header">Star Wars planets:</h1>
           <div className="main">
-            {planets.map(planet => <Planet {...planet} key={planet.url}/>)}
+            {sortedByDiameter.map(planet => <Planet {...planet} key={planet.url}/>)}
           </div>
         </div>
       );

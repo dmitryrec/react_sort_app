@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 export default function Planet({name, diameter, orbital_period}) {
         return (
