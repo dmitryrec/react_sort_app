@@ -6,7 +6,8 @@ export default class App extends Component {
   state = {
     planets: [],
     loading: false,
-    enableAutoRefresh: false
+    enableAutoRefresh: false,
+    minDiameter: 4900
   }
 
   componentDidMount() {
@@ -37,11 +38,20 @@ export default class App extends Component {
     }), () => {
       this.state.enableAutoRefresh ? this.refresh = setInterval(this.getPlanets, 3000) : clearInterval(this.refresh) 
     })
+  };
+
+  updateMinDiameter = (e) => {
+    this.setState({
+      minDiameter: Number(e.target.value)
+    })
   }
 
   render() {
-    const { planets, loading, enableAutoRefresh } = this.state;
-    const sortedByDiameter = planets.sort((a, b) => a.diameter - b.diameter);
+    const { planets, loading, enableAutoRefresh, minDiameter } = this.state;
+    const sortedByDiameter = planets
+    .filter(planet => planet.diameter >= minDiameter)
+    .sort((a, b) => a.diameter - b.diameter)
+    
 
     if(loading){
       return <div className="loading">Loading...</div>
@@ -50,6 +60,19 @@ export default class App extends Component {
         <div className="container">
           <h1 className="header">Star Wars planets:</h1>
           <div onClick={this.autoRefresh} className="btn">{enableAutoRefresh ? 'stop' : 'start'} autorefresh</div>
+          <div className="range">
+            <input 
+              type="range" 
+              min={4900} 
+              max={118000} 
+              value={minDiameter} 
+              className="inp"
+              onChange={this.updateMinDiameter}
+              />
+
+          </div>
+          <div className="minDiameter">minDiameter: {minDiameter}</div>
+
           <div className="main">
             {sortedByDiameter.map(planet => <Planet {...planet} key={planet.url}/>)}
           </div>

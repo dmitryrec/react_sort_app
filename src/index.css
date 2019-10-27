@@ -65,3 +65,21 @@ code {
   text-align: center;
   cursor: pointer;
 }
+
+.range {
+ display: flex;
+ justify-content: center;
+ margin: 10px;
+ padding: 10px;
+}
+.inp {
+  width: 20%;
+  padding: 10px;
+  display: block;
+}
+
+.minDiameter{
+  margin: 0 auto;
+  width: 20%;
+  text-align: center;
+}
