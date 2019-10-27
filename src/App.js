@@ -63,8 +63,8 @@ export default class App extends Component {
           <div className="range">
             <input 
               type="range" 
-              min={4900} 
-              max={118000} 
+              min={0} 
+              max={19721} 
               value={minDiameter} 
               className="inp"
               onChange={this.updateMinDiameter}
