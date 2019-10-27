@@ -44,14 +44,16 @@ export default class App extends Component {
     this.setState({
       minDiameter: Number(e.target.value)
     })
-  }
+  };
+
+  getFilteredPlanets = (planets, minDiameter) => 
+  planets
+  .filter(planet => planet.diameter >= minDiameter)
+  .sort((a, b) => a.diameter - b.diameter)
 
   render() {
     const { planets, loading, enableAutoRefresh, minDiameter } = this.state;
-    const sortedByDiameter = planets
-    .filter(planet => planet.diameter >= minDiameter)
-    .sort((a, b) => a.diameter - b.diameter)
-    
+    const sortedByDiameter = this.getFilteredPlanets(planets, minDiameter)
 
     if(loading){
       return <div className="loading">Loading...</div>
@@ -63,7 +65,7 @@ export default class App extends Component {
           <div className="range">
             <input 
               type="range" 
-              min={0} 
+              min={4900} 
               max={19721} 
               value={minDiameter} 
               className="inp"
