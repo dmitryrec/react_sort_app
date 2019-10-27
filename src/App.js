@@ -32,8 +32,8 @@ export default class App extends Component {
   };
 
   autoRefresh = () => {
-    this.setState((state) => ({
-      enableAutoRefresh: !state.enableAutoRefresh
+    this.setState(({enableAutoRefresh}) => ({
+      enableAutoRefresh: !enableAutoRefresh
     }), () => {
       this.state.enableAutoRefresh ? this.refresh = setInterval(this.getPlanets, 3000) : clearInterval(this.refresh) 
     })
@@ -49,7 +49,7 @@ export default class App extends Component {
       return (
         <div className="container">
           <h1 className="header">Star Wars planets:</h1>
-          <button onClick={this.autoRefresh}>{enableAutoRefresh ? 'stop' : 'start'} autorefresh</button>
+          <div onClick={this.autoRefresh} className="btn">{enableAutoRefresh ? 'stop' : 'start'} autorefresh</div>
           <div className="main">
             {sortedByDiameter.map(planet => <Planet {...planet} key={planet.url}/>)}
           </div>
