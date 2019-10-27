@@ -5,10 +5,15 @@ export default class App extends Component {
 
   state = {
     planets: [],
-    loading: false
+    loading: false,
+    enableAutoRefresh: false
   }
 
   componentDidMount() {
+   this.getPlanets()
+  }
+  
+  getPlanets = () => {
     this.setState({
       loading: true
     })
@@ -24,11 +29,19 @@ export default class App extends Component {
         })
         console.log(this.state.planets)
       })
+  };
+
+  autoRefresh = () => {
+    this.setState((state) => ({
+      enableAutoRefresh: !state.enableAutoRefresh
+    }), () => {
+      this.state.enableAutoRefresh ? this.refresh = setInterval(this.getPlanets, 3000) : clearInterval(this.refresh) 
+    })
   }
 
   render() {
-    const { planets, loading } = this.state;
-    const sortedByDiameter = planets.sort((a, b) => b.diameter - a.diameter)
+    const { planets, loading, enableAutoRefresh } = this.state;
+    const sortedByDiameter = planets.sort((a, b) => a.diameter - b.diameter);
 
     if(loading){
       return <div className="loading">Loading...</div>
@@ -36,6 +49,7 @@ export default class App extends Component {
       return (
         <div className="container">
           <h1 className="header">Star Wars planets:</h1>
+          <button onClick={this.autoRefresh}>{enableAutoRefresh ? 'stop' : 'start'} autorefresh</button>
           <div className="main">
             {sortedByDiameter.map(planet => <Planet {...planet} key={planet.url}/>)}
           </div>
